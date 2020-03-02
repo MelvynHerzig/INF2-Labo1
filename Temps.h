@@ -16,10 +16,14 @@
 #ifndef LABO1_TEMPS_H
 #define LABO1_TEMPS_H
 
+#include <ctime>
 
 class Temps
 {
 public:
+
+    Temps();
+    Temps(const time_t& temps);
 
     //Accesseurs
     unsigned int getHeure() const;
