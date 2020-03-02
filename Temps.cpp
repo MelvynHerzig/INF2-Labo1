@@ -35,7 +35,7 @@ Temps::Temps(time_t temps)
 }
 
 Temps::Temps(unsigned heure, unsigned minute, unsigned seconde)
-: _heure (heure), _minute(minute), _seconde(seconde)
+: _heure(heure), _minute(minute), _seconde(seconde)
 {}
 
 
@@ -90,7 +90,10 @@ Temps& Temps::operator++()
 // post-incrémentation (d'une seconde)
 Temps  Temps::operator++(int)
 {
-    Temps temp(_heure, _minute, _seconde); // MANQUE LE CONSTRUCTEUR POUR QUE OK
+    Temps temp = *this;
+    // verification(secondes)
+    // verification(minutes)
+    // verification(heures)
     if(++_seconde > 59){
         _seconde -= 60;
         if(++_minute > 59){
@@ -102,3 +105,15 @@ Temps  Temps::operator++(int)
     }
     return temp;
 }
+
+//// pré décrémentation (d'une seconde)
+//Temps& Temps::operator--()
+//{
+//
+//}
+//
+//// post décrémentation (d'une seconde)
+//Temps Temps::operator--(int)
+//{
+//
+//}

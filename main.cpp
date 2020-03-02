@@ -14,10 +14,11 @@
  */
 
 #include <iostream>
+#include <cstdlib>  // pour EXIT_SUCCESS
 #include "Temps.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    
+    return EXIT_SUCCESS;
 }

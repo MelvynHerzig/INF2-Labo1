@@ -40,8 +40,10 @@ public:
     void setSeconde(unsigned int seconde);
     
     //Surcharges d'opérateurs
-    Temps& operator++();    // pré-incrémentation (d'une seconde)
-    Temps  operator++(int); // post-incrémentation (d'une seconde)
+    Temps& operator++();    // pré  incrémentation (d'une seconde)
+    Temps  operator++(int); // post incrémentation (d'une seconde)
+//    Temps& operator--();    // pré  décrémentation (d'une seconde)
+//    Temps  operator--(int); // post décrémentation (d'une seconde)
 
 private:
     unsigned _heure  ;
