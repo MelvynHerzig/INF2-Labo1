@@ -19,6 +19,43 @@ std::ostream& operator<<(std::ostream& os, const Temps& temps)
               << temps._heure << ':' << temps._minute << ':' << temps._seconde;
 }
 
+bool operator<(const Temps &temps1, const Temps &temps2)
+{
+    return temps1._heure < temps2._heure
+        || (temps1._heure == temps2._heure
+            && temps1._minute < temps2._minute)
+        || (temps1._heure == temps2._heure
+            && temps1._minute < temps2._minute
+            &&  temps1._seconde < temps2._seconde);
+}
+
+bool operator>(const Temps &temps1, const Temps &temps2)
+{
+    return temps2 < temps1;
+}
+
+bool operator<=(const Temps &temps1, const Temps &temps2)
+{
+    return !(temps1 > temps2);
+}
+
+bool operator>=(const Temps &temps1, const Temps &temps2)
+{
+    return !(temps1 < temps2);
+}
+
+bool operator==(const Temps &temps1, const Temps &temps2)
+{
+    return temps1._heure   == temps2._heure
+        && temps1._minute  == temps2._minute
+        && temps1._seconde == temps2._seconde;
+}
+
+bool operator!=(const Temps &temps1, const Temps &temps2)
+{
+    return !(temps1 == temps2);
+}
+
 
 /* ------------------- CONSTRUCTEURS ---------------------*/
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
@@ -106,6 +143,7 @@ Temps  Temps::operator++(int)
     return temp;
 }
 
+
 //// pré décrémentation (d'une seconde)
 //Temps& Temps::operator--()
 //{
@@ -117,3 +155,4 @@ Temps  Temps::operator++(int)
 //{
 //
 //}
+

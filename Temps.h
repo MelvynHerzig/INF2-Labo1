@@ -25,6 +25,15 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
+    // Operateur de comparaisons
+    friend bool operator<(const Temps& temps1, const Temps& temps2);
+    friend bool operator>(const Temps& temps1, const Temps& temps2);
+    friend bool operator<=(const Temps& temps1, const Temps& temps2);
+    friend bool operator>=(const Temps& temps1, const Temps& temps2);
+    friend bool operator==(const Temps& temps1, const Temps& temps2);
+    friend bool operator!=(const Temps& temps1, const Temps& temps2);
+
+
     Temps();
     Temps(time_t temps);
     Temps(unsigned heure, unsigned minute, unsigned seconde = 0);
