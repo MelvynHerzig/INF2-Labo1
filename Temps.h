@@ -26,8 +26,8 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
     // Operateur de comparaisons
-    friend bool operator<(const Temps& temps1, const Temps& temps2);
-    friend bool operator>(const Temps& temps1, const Temps& temps2);
+    friend bool operator< (const Temps& temps1, const Temps& temps2);
+    friend bool operator> (const Temps& temps1, const Temps& temps2);
     friend bool operator<=(const Temps& temps1, const Temps& temps2);
     friend bool operator>=(const Temps& temps1, const Temps& temps2);
     friend bool operator==(const Temps& temps1, const Temps& temps2);
@@ -35,7 +35,7 @@ public:
 
 
     Temps();
-    Temps(time_t temps);
+    Temps(time_t temps); //Convertit au format UTC
     Temps(unsigned heure, unsigned minute, unsigned seconde = 0);
 
     //Accesseurs
@@ -53,6 +53,7 @@ public:
     Temps  operator++(int); // post incrémentation (d'une seconde)
 //    Temps& operator--();    // pré  décrémentation (d'une seconde)
 //    Temps  operator--(int); // post décrémentation (d'une seconde)
+    operator double() const;
 
 private:
     unsigned _heure  ;

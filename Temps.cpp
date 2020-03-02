@@ -15,8 +15,15 @@
 /* ------------------ FONCTIONS AMIES --------------------*/
 std::ostream& operator<<(std::ostream& os, const Temps& temps)
 {
-    return os << std::setw(2) << std::setfill('0')
-              << temps._heure << ':' << temps._minute << ':' << temps._seconde;
+    const char FILL = '0';
+    const unsigned WIDTH = 2;
+
+    return os << std::setw(WIDTH) << std::setfill(FILL)
+              << temps._heure << ':'
+              << std::setw(WIDTH) << std::setfill(FILL)
+              << temps._minute << ':'
+              << std::setw(WIDTH) << std::setfill(FILL)
+              << temps._seconde;
 }
 
 bool operator<(const Temps &temps1, const Temps &temps2)
@@ -109,6 +116,7 @@ void Temps::setSeconde(unsigned int seconde)
 
 
 /* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
+
 // pré-incrémentation (d'une seconde)
 Temps& Temps::operator++()
 {
@@ -155,4 +163,9 @@ Temps  Temps::operator++(int)
 //{
 //
 //}
+
+Temps::operator double() const
+{
+    return _heure + (60. * _minute + _seconde) / 3600;
+}
 
