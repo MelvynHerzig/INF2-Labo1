@@ -38,6 +38,10 @@ public:
 
     unsigned int getSeconde() const;
     void setSeconde(unsigned int seconde);
+    
+    //Surcharges d'opérateurs
+    Temps& operator++();    // pré-incrémentation (d'une seconde)
+    Temps  operator++(int); // post-incrémentation (d'une seconde)
 
 private:
     unsigned _heure  ;

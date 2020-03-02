@@ -69,3 +69,36 @@ void Temps::setSeconde(unsigned int seconde)
 {
     _seconde = seconde;
 }
+
+
+/* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
+// pré-incrémentation (d'une seconde)
+Temps& Temps::operator++()
+{
+    if(++_seconde > 59){
+        _seconde -= 60;
+        if(++_minute > 59){
+            _minute -= 60;
+            if(++_heure > 23){
+                _heure -= 24;
+            }
+        }
+    }
+    return *this;
+}
+
+// post-incrémentation (d'une seconde)
+Temps  Temps::operator++(int)
+{
+    Temps temp(_heure, _minute, _seconde); // MANQUE LE CONSTRUCTEUR POUR QUE OK
+    if(++_seconde > 59){
+        _seconde -= 60;
+        if(++_minute > 59){
+            _minute -= 60;
+            if(++_heure > 23){
+                _heure -= 24;
+            }
+        }
+    }
+    return temp;
+}
