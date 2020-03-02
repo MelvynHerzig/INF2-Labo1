@@ -15,12 +15,19 @@
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
 {}
 
-Temps::Temps(const time_t& temps)
+Temps::Temps(time_t temps)
 {
-    _heure   = (temps / 3600) % 24;
-    _minute  = (temps / 60)   % 60;
-    _seconde = temps % 60;
+    struct tm * ptm;
+    ptm = gmtime(&temps);
+
+    _heure   = ptm->tm_hour;
+    _minute  = ptm->tm_min ;
+    _seconde = ptm->tm_sec ;
 }
+
+Temps::Temps(unsigned heure, unsigned minute, unsigned seconde)
+: _heure (heure), _minute(minute), _seconde(seconde)
+{}
 
 
 /* -------------------- ACCESSEURS ----------------------*/

@@ -23,7 +23,8 @@ class Temps
 public:
 
     Temps();
-    Temps(const time_t& temps);
+    Temps(time_t temps);
+    Temps(unsigned heure, unsigned minute, unsigned seconde = 0);
 
     //Accesseurs
     unsigned int getHeure() const;
