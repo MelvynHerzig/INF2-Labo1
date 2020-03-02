@@ -9,7 +9,16 @@
  -----------------------------------------------------------------------------------
  */
 
+#include <iomanip>
 #include "Temps.h"
+
+/* ------------------ FONCTIONS AMIES --------------------*/
+std::ostream& operator<<(std::ostream& os, const Temps& temps)
+{
+    return os << std::setw(2) << std::setfill('0')
+              << temps._heure << ':' << temps._minute << ':' << temps._seconde;
+}
+
 
 /* ------------------- CONSTRUCTEURS ---------------------*/
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
@@ -20,9 +29,9 @@ Temps::Temps(time_t temps)
     struct tm * ptm;
     ptm = gmtime(&temps);
 
-    _heure   = ptm->tm_hour;
-    _minute  = ptm->tm_min ;
-    _seconde = ptm->tm_sec ;
+    _heure   = (unsigned)ptm->tm_hour;
+    _minute  = (unsigned)ptm->tm_min ;
+    _seconde = (unsigned)ptm->tm_sec ;
 }
 
 Temps::Temps(unsigned heure, unsigned minute, unsigned seconde)

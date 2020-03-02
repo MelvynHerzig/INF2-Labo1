@@ -16,11 +16,14 @@
 #ifndef LABO1_TEMPS_H
 #define LABO1_TEMPS_H
 
-#include <ctime>
+#include <ctime> // time_t, struct tm *, gmtime.
+#include <ostream>
 
 class Temps
 {
 public:
+
+    friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
     Temps();
     Temps(time_t temps);
