@@ -21,8 +21,6 @@
 
 class Temps
 {
-public:
-
     friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
     // Operateur de comparaisons
@@ -33,6 +31,8 @@ public:
     friend bool operator==(const Temps& temps1, const Temps& temps2);
     friend bool operator!=(const Temps& temps1, const Temps& temps2);
 
+    friend Temps& operator+(Temps temps1, const Temps& temps2);
+public:
 
     Temps();
     Temps(time_t temps); //Convertit au format UTC

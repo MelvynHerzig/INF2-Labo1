@@ -63,6 +63,11 @@ bool operator!=(const Temps &temps1, const Temps &temps2)
     return !(temps1 == temps2);
 }
 
+Temps& operator+(Temps temps1, const Temps& temps2)
+{
+    temps1 += temps2;
+    return temps1;
+}
 
 /* ------------------- CONSTRUCTEURS ---------------------*/
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
