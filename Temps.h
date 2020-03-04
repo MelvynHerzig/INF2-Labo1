@@ -32,11 +32,13 @@ class Temps
     friend bool operator!=(const Temps& temps1, const Temps& temps2);
 
     friend Temps operator+(Temps temps1, const Temps& temps2);
+    friend Temps operator-(Temps temps1, const Temps& temps2);
 public:
 
     Temps();
     Temps(time_t temps); //Convertit au format UTC
     Temps(unsigned heure, unsigned minute, unsigned seconde = 0);
+    Temps(unsigned secondes);
 
     //Accesseurs
     unsigned int getHeure() const;
@@ -49,17 +51,24 @@ public:
     void setSeconde(unsigned int seconde);
     
     //Surcharges d'opérateurs
-//    Temps& operator--();    // pré  décrémentation (d'une seconde)
-//    Temps  operator--(int); // post décrémentation (d'une seconde)
     Temps& operator+=(const Temps& temps);
     Temps& operator++();    // pré  incrémentation (d'une seconde)
     Temps  operator++(int); // post incrémentation (d'une seconde)
+
+    Temps& operator-=(const Temps& temps);
+    Temps& operator--();
+    Temps  operator--(int);
+
     operator double() const;
+
+    unsigned enSecondes() const;
 
 private:
     unsigned _heure  ;
     unsigned _minute ;
     unsigned _seconde;
+
+    const static unsigned SECONDES_MAX_DANS_JOUR;
 };
 
 

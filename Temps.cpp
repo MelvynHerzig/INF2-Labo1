@@ -69,6 +69,12 @@ Temps operator+(Temps temps1, const Temps& temps2)
     return temps1;
 }
 
+Temps operator-(Temps temps1, const Temps& temps2)
+{
+    temps1 -= temps2;
+    return temps1;
+}
+
 /* ------------------- CONSTRUCTEURS ---------------------*/
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
 {}
@@ -87,6 +93,13 @@ Temps::Temps(unsigned heure, unsigned minute, unsigned seconde)
 : _heure(heure), _minute(minute), _seconde(seconde)
 {}
 
+Temps::Temps(unsigned secondes)
+{
+    _heure = secondes / 3600;
+    secondes %= 3600;
+    _minute = secondes / 60;
+    _seconde = secondes % 60;
+}
 
 /* -------------------- ACCESSEURS ----------------------*/
 unsigned int Temps::getHeure() const
@@ -136,10 +149,10 @@ void Temps::setSeconde(unsigned int seconde)
 //{
 //
 //}
-    
+
 Temps& Temps::operator+=(const Temps& temps)
 {
-    if((_seconde += temps._seconde) > 59){
+    /*if((_seconde += temps._seconde) > 59){
         _seconde -= 60;
         ++_minute;
     }
@@ -150,9 +163,16 @@ Temps& Temps::operator+=(const Temps& temps)
     if((_heure += temps._heure) > 23){
         _heure -= 24;
     }
-    return *this;
+    return *this;*/
+    unsigned somme = this->enSecondes() + temps.enSecondes();
+    if(somme > SECONDES_MAX_DANS_JOUR)
+    {
+        somme -= SECONDES_MAX_DANS_JOUR;
+    }
+
+    return *this = Temps((unsigned)somme);
 }
-    
+
 // pré-incrémentation (d'une seconde)
 Temps& Temps::operator++()
 {
@@ -168,9 +188,37 @@ Temps  Temps::operator++(int)
 }
 
 
+Temps &Temps::operator-=(const Temps &temps)
+{
+    int difference = (int)(this->enSecondes() - temps.enSecondes());
+    if(difference < 0)
+    {
+        difference = SECONDES_MAX_DANS_JOUR + difference;
+    }
+
+    return *this = Temps((unsigned)difference);
+}
+
+Temps &Temps::operator--()
+{
+    return *this -= Temps(0,0,1);
+}
+
+Temps Temps::operator--(int)
+{
+    Temps temp = *this;
+    --(*this);
+    return temp;
+}
 
 Temps::operator double() const
 {
     return _heure + (60. * _minute + _seconde) / 3600;
 }
 
+unsigned Temps::enSecondes() const
+{
+    return _heure*3600 + _minute * 60 + _seconde;
+}
+
+const unsigned Temps::SECONDES_MAX_DANS_JOUR = 24*3600;
