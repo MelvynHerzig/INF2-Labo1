@@ -93,14 +93,14 @@ int main()
 
     //Incréments et décréments post-prefixés
 
+    std::cout << "pré  ++ de " << t0 << " : ++t0 = " << ++t0 << std::endl
+              << "post ++ de " << t0 << " : t0++ = " << t0++ << std::endl
+              << "valeur finale de t0 : " << t0 << std::endl;
+    
     /*
-    std::cout << "pré  ++ de " << t0 << " = " << ++t0 << std::endl
-              << "Post ++ de  "<< t0 << " = " << t0++ << std::endl
-              << "valeur finale de " << t0 << " = " << t0 << std::endl;
-
-    std::cout << "pré  -- de " << t0 << " = " << --t0 << std::endl
-              << "Post -- de " << t0 << " = " << t0-- << std::endl
-              << "valeur finale de " << t0 << " = " << t0 << std::endl;
+    std::cout << "pré  -- de " << t0 << " : --t0 = " << --t0 << std::endl
+              << "post -- de " << t0 << " : t0-- = " << t0-- << std::endl
+              << "valeur finale de t0 : " << t0 << std::endl;
 
     std::cout << std::endl;*/
 
