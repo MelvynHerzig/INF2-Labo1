@@ -122,30 +122,6 @@ void Temps::setSeconde(unsigned int seconde)
 
 /* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
 
-//// pré-incrémentation (d'une seconde)
-//Temps& Temps::operator++()
-//{
-//    if(++_seconde > 59){
-//        _seconde -= 60;
-//        if(++_minute > 59){
-//            _minute -= 60;
-//            if(++_heure > 23){
-//                _heure -= 24;
-//            }
-//        }
-//    }
-//    return *this;
-//}
-//
-//// post-incrémentation (d'une seconde)
-//Temps  Temps::operator++(int)
-//{
-//    Temps temp = *this;
-//    ++(*this);
-//    return temp;
-//}
-//
-//
 //// pré décrémentation (d'une seconde)
 //Temps& Temps::operator--()
 //{
@@ -176,6 +152,22 @@ Temps& Temps::operator+=(const Temps& temps)
     }
     return *this;
 }
+    
+// pré-incrémentation (d'une seconde)
+Temps& Temps::operator++()
+{
+    return *this += Temps(0,0,1);
+}
+
+    // post-incrémentation (d'une seconde)
+Temps  Temps::operator++(int)
+{
+    Temps temp = *this;
+    ++(*this);
+    return temp;
+}
+
+
 
 Temps::operator double() const
 {
