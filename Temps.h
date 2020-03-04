@@ -31,7 +31,7 @@ class Temps
     friend bool operator==(const Temps& temps1, const Temps& temps2);
     friend bool operator!=(const Temps& temps1, const Temps& temps2);
 
-    friend Temps& operator+(Temps temps1, const Temps& temps2);
+    friend Temps operator+(Temps temps1, const Temps& temps2);
 public:
 
     Temps();

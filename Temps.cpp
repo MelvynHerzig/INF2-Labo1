@@ -63,7 +63,7 @@ bool operator!=(const Temps &temps1, const Temps &temps2)
     return !(temps1 == temps2);
 }
 
-Temps& operator+(Temps temps1, const Temps& temps2)
+Temps operator+(Temps temps1, const Temps& temps2)
 {
     temps1 += temps2;
     return temps1;
