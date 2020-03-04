@@ -117,52 +117,60 @@ void Temps::setSeconde(unsigned int seconde)
 
 /* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
 
-// pré-incrémentation (d'une seconde)
-Temps& Temps::operator++()
-{
-    if(++_seconde > 59){
-        _seconde -= 60;
-        if(++_minute > 59){
-            _minute -= 60;
-            if(++_heure > 23){
-                _heure -= 24;
-            }
-        }
-    }
-    return *this;
-}
-
-// post-incrémentation (d'une seconde)
-Temps  Temps::operator++(int)
-{
-    Temps temp = *this;
-    // verification(secondes)
-    // verification(minutes)
-    // verification(heures)
-    if(++_seconde > 59){
-        _seconde -= 60;
-        if(++_minute > 59){
-            _minute -= 60;
-            if(++_heure > 23){
-                _heure -= 24;
-            }
-        }
-    }
-    return temp;
-}
-
-
+//// pré-incrémentation (d'une seconde)
+//Temps& Temps::operator++()
+//{
+//    if(++_seconde > 59){
+//        _seconde -= 60;
+//        if(++_minute > 59){
+//            _minute -= 60;
+//            if(++_heure > 23){
+//                _heure -= 24;
+//            }
+//        }
+//    }
+//    return *this;
+//}
+//
+//// post-incrémentation (d'une seconde)
+//Temps  Temps::operator++(int)
+//{
+//    Temps temp = *this;
+//    ++(*this);
+//    return temp;
+//}
+//
+//
 //// pré décrémentation (d'une seconde)
 //Temps& Temps::operator--()
 //{
-//
+//    if(_seconde == 0){
+//    _seconde = 60;
+//    }
+//    return *this;
 //}
-//
+
 //// post décrémentation (d'une seconde)
 //Temps Temps::operator--(int)
 //{
 //
 //}
+    
+Temps& Temps::operator+=(const Temps& temps)
+{
+    if(_seconde += temps._seconde > 59){
+        _seconde -= 60;
+        ++_minute;
+    }
+    if(_minute += temps._minute > 59) {
+        _minute -= 60;
+        ++_heure;
+    }
+    if(_heure += temps._heure > 23){
+        _heure -= 24;
+    }
+    return *this;
+}
 
 Temps::operator double() const
 {
