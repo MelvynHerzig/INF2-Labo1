@@ -91,6 +91,8 @@ int main()
               << std::boolalpha << t5 << " != " << t5 << ' ' << (t5 != t5) << std::endl
               << std::boolalpha << t6 << " != " << t5 << ' ' << (t6 != t5) << std::endl;
 
+    std::cout << std::endl;
+
     //Incréments et décréments post-prefixés
 
     //
@@ -126,13 +128,15 @@ int main()
 
     //Affichage
     const Temps t12(23,05,55);
-    std::cout << "Affichage de t12 " << t2 << std::endl;
+    std::cout << "Affichage de t12 " << t12 << std::endl;
 
     std::cout << std::endl;
 
     //Operateur de conversion
     double heure = t12;
     std::cout << "Conversion de " << t12 << " en double = " << heure << std::endl;
+
+    system("PAUSE");
 
     return EXIT_SUCCESS;
 }

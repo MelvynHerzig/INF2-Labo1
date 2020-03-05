@@ -9,8 +9,10 @@
  -----------------------------------------------------------------------------------
  */
 
-#include <iomanip>
+#include <iomanip> //std::setx, std::setfill
 #include "Temps.h"
+
+const unsigned Temps::SECONDE_MAX_DANS_JOUR = 86400;
 
 /* ------------------ FONCTIONS AMIES --------------------*/
 std::ostream& operator<<(std::ostream& os, const Temps& temps)
@@ -134,40 +136,12 @@ void Temps::setSeconde(unsigned int seconde)
 
 
 /* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
-
-//// pré décrémentation (d'une seconde)
-//Temps& Temps::operator--()
-//{
-//    if(_seconde == 0){
-//    _seconde = 60;
-//    }
-//    return *this;
-//}
-
-//// post décrémentation (d'une seconde)
-//Temps Temps::operator--(int)
-//{
-//
-//}
-
 Temps& Temps::operator+=(const Temps& temps)
 {
-    /*if((_seconde += temps._seconde) > 59){
-        _seconde -= 60;
-        ++_minute;
-    }
-    if((_minute += temps._minute) > 59) {
-        _minute -= 60;
-        ++_heure;
-    }
-    if((_heure += temps._heure) > 23){
-        _heure -= 24;
-    }
-    return *this;*/
-    unsigned somme = this->enSecondes() + temps.enSecondes();
-    if(somme > SECONDES_MAX_DANS_JOUR)
+    unsigned somme = enSeconde() + temps.enSeconde();
+    if(somme > SECONDE_MAX_DANS_JOUR)
     {
-        somme -= SECONDES_MAX_DANS_JOUR;
+        somme -= SECONDE_MAX_DANS_JOUR;
     }
 
     return *this = Temps((unsigned)somme);
@@ -187,13 +161,12 @@ Temps  Temps::operator++(int)
     return temp;
 }
 
-
 Temps &Temps::operator-=(const Temps &temps)
 {
-    int difference = (int)(this->enSecondes() - temps.enSecondes());
+    int difference = (int)(enSeconde() - temps.enSeconde());
     if(difference < 0)
     {
-        difference = SECONDES_MAX_DANS_JOUR + difference;
+        difference = (int)SECONDE_MAX_DANS_JOUR + difference;
     }
 
     return *this = Temps((unsigned)difference);
@@ -216,9 +189,7 @@ Temps::operator double() const
     return _heure + (60. * _minute + _seconde) / 3600;
 }
 
-unsigned Temps::enSecondes() const
+unsigned Temps::enSeconde() const
 {
     return _heure*3600 + _minute * 60 + _seconde;
 }
-
-const unsigned Temps::SECONDES_MAX_DANS_JOUR = 24*3600;

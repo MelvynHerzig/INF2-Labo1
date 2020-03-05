@@ -5,9 +5,14 @@
  Auteur(s)   : Melvyn Herzig, Forestier Quentin, Logan Victoria
  Date        : 02.03.2020
 
- But         : /
+ But         : Mettre à dispotion une classe Temps caracterisés par
+                - des heures
+                - des minutes
+                - des secondes
+                Ainsi qu'un éventail de fonctions utiles à leur manipulation.
 
- Remarque(s) : /
+ Remarque(s) : Les paramètre des fonctions de type heure - minute - secondes ne sont
+                pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85)
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
@@ -16,11 +21,13 @@
 #ifndef LABO1_TEMPS_H
 #define LABO1_TEMPS_H
 
-#include <ctime> // time_t, struct tm *, gmtime.
-#include <ostream>
+#include <ctime>   //time_t, struct tm *, gmtime.
+#include <ostream> //std::ostream
 
 class Temps
 {
+    const static unsigned SECONDE_MAX_DANS_JOUR;
+
     friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
     // Operateur de comparaisons
@@ -38,7 +45,7 @@ public:
     Temps();
     Temps(time_t temps); //Convertit au format UTC
     Temps(unsigned heure, unsigned minute, unsigned seconde = 0);
-    Temps(unsigned secondes);
+    Temps(unsigned seconde);
 
     //Accesseurs
     unsigned int getHeure() const;
@@ -56,19 +63,17 @@ public:
     Temps  operator++(int); // post incrémentation (d'une seconde)
 
     Temps& operator-=(const Temps& temps);
-    Temps& operator--();
-    Temps  operator--(int);
+    Temps& operator--();    // pré  décrémentation (d'une seconde)
+    Temps  operator--(int); // post décrémentation (d'une seconde)
 
-    operator double() const;
+    operator double() const; //Conversion tu temps courant en heures
 
-    unsigned enSecondes() const;
+    unsigned enSeconde() const;
 
 private:
     unsigned _heure  ;
     unsigned _minute ;
     unsigned _seconde;
-
-    const static unsigned SECONDES_MAX_DANS_JOUR;
 };
 
 
