@@ -9,8 +9,10 @@
  -----------------------------------------------------------------------------------
  */
 
-#include <iomanip>
+#include <iomanip>  //std::setw(), std::setfill()
 #include "Temps.h"
+
+const unsigned Temps::SECONDE_MAX_DANS_JOUR = 86400;
 
 /* ------------------ FONCTIONS AMIES --------------------*/
 std::ostream& operator<<(std::ostream& os, const Temps& temps)
@@ -63,6 +65,17 @@ bool operator!=(const Temps &temps1, const Temps &temps2)
     return !(temps1 == temps2);
 }
 
+Temps operator+(Temps temps1, const Temps& temps2)
+{
+    temps1 += temps2;
+    return temps1;
+}
+
+Temps operator-(Temps temps1, const Temps& temps2)
+{
+    temps1 -= temps2;
+    return temps1;
+}
 
 /* ------------------- CONSTRUCTEURS ---------------------*/
 Temps::Temps() : _heure(0), _minute(0), _seconde(0)
@@ -82,6 +95,13 @@ Temps::Temps(unsigned heure, unsigned minute, unsigned seconde)
 : _heure(heure), _minute(minute), _seconde(seconde)
 {}
 
+Temps::Temps(unsigned seconde)
+{
+    _heure   = seconde / 3600;
+    seconde %= 3600;
+    _minute  = seconde / 60;
+    _seconde = seconde % 60;
+}
 
 /* -------------------- ACCESSEURS ----------------------*/
 unsigned int Temps::getHeure() const
@@ -116,56 +136,62 @@ void Temps::setSeconde(unsigned int seconde)
 
 
 /* -------------------- SURCHAGE D'OPERATEURS ----------------------*/
+Temps& Temps::operator+=(const Temps& temps)
+{
+    unsigned somme = enSeconde() + temps.enSeconde();
+
+    if(somme > SECONDE_MAX_DANS_JOUR)
+    {
+        somme -= SECONDE_MAX_DANS_JOUR;
+    }
+
+    return *this = Temps((unsigned)somme);
+}
 
 // pré-incrémentation (d'une seconde)
 Temps& Temps::operator++()
 {
-    if(++_seconde > 59){
-        _seconde -= 60;
-        if(++_minute > 59){
-            _minute -= 60;
-            if(++_heure > 23){
-                _heure -= 24;
-            }
-        }
-    }
-    return *this;
+    return *this += Temps(0,0,1);
 }
 
 // post-incrémentation (d'une seconde)
 Temps  Temps::operator++(int)
 {
     Temps temp = *this;
-    // verification(secondes)
-    // verification(minutes)
-    // verification(heures)
-    if(++_seconde > 59){
-        _seconde -= 60;
-        if(++_minute > 59){
-            _minute -= 60;
-            if(++_heure > 23){
-                _heure -= 24;
-            }
-        }
-    }
+    ++(*this);
     return temp;
 }
 
 
-//// pré décrémentation (d'une seconde)
-//Temps& Temps::operator--()
-//{
-//
-//}
-//
-//// post décrémentation (d'une seconde)
-//Temps Temps::operator--(int)
-//{
-//
-//}
+Temps& Temps::operator-=(const Temps &temps)
+{
+    int difference = (int)(enSeconde() - temps.enSeconde());
+    if(difference < 0)
+    {
+        difference = (int)SECONDE_MAX_DANS_JOUR + difference;
+    }
+
+    return *this = Temps((unsigned)difference);
+}
+
+Temps &Temps::operator--()
+{
+    return *this -= Temps(0,0,1);
+}
+
+Temps Temps::operator--(int)
+{
+    Temps temp = *this;
+    --(*this);
+    return temp;
+}
 
 Temps::operator double() const
 {
     return _heure + (60. * _minute + _seconde) / 3600;
 }
 
+unsigned Temps::enSeconde() const
+{
+    return _heure * 3600 + _minute * 60 + _seconde;
+}
