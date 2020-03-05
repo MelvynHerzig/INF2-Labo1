@@ -13,7 +13,7 @@
  -----------------------------------------------------------------------------------
  */
 
-#include <iostream> //std::cout, std::endl
+#include <iostream>
 #include <cstdlib>  //EXIT_SUCCESS
 #include "Temps.h"
 
@@ -91,9 +91,9 @@ int main()
               << std::boolalpha << t5 << " != " << t5 << ' ' << (t5 != t5) << std::endl
               << std::boolalpha << t6 << " != " << t5 << ' ' << (t6 != t5) << std::endl;
 
-    std::cout << std::endl;
-
     //Incréments et décréments post-prefixés
+
+    //
     std::cout << "pre  ++ de " << t0 << " : ++t0 = " << ++t0 << std::endl;
     std::cout << "post ++ de " << t0 << " : t0++ = " << t0++ << std::endl
               << "valeur finale de t0 : " << t0 << std::endl;
@@ -109,8 +109,8 @@ int main()
     Temps t7 = Temps(23,30,30);
     Temps t8 = Temps(2 ,16,15);
     const Temps t9  = {23,30,30};
-    const Temps t10 = {2 ,16,15};
-    const Temps t11 = {2 ,45,45};
+    const Temps t10 = {2,16,15};
+    const Temps t11 = {2,45,45};
 
     std::cout << t9  << " +  "  << t11 << " = " << t9  +   t11 << std::endl;
     std::cout << t7  << " += "  << t11 << " = ";
@@ -118,7 +118,7 @@ int main()
     std::cout << t7 << std::endl;
 
     std::cout << t10 << " -  "  << t11 << " = " << t10  -  t11 << std::endl;
-    std::cout << t8 << " -= "   << t11 << " = ";
+    std::cout << t8 << " -= "  << t11 << " = ";
     t8 -= t11;
     std::cout << t8 << std::endl;
 
@@ -126,15 +126,13 @@ int main()
 
     //Affichage
     const Temps t12(23,05,55);
-    std::cout << "Affichage de t12 " << t12 << std::endl;
+    std::cout << "Affichage de t12 " << t2 << std::endl;
 
     std::cout << std::endl;
 
     //Operateur de conversion
     double heure = t12;
     std::cout << "Conversion de " << t12 << " en double = " << heure << std::endl;
-
-    system("PAUSE");
 
     return EXIT_SUCCESS;
 }
