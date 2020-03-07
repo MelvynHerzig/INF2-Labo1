@@ -5,14 +5,14 @@
  Auteur(s)   : Melvyn Herzig, Forestier Quentin, Logan Victoria
  Date        : 02.03.2020
 
- But         : Mettre à dispotion une classe Temps caracterisés par
+ But         : Mettre à dispotion une classe Temps caracterisées par
                 - des heures
                 - des minutes
                 - des secondes
                 Ainsi qu'un éventail de fonctions utiles à leur manipulation.
 
- Remarque(s) : Les paramètre des fonctions de type heure - minute - secondes ne sont
-                pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85)
+ Remarque(s) : Les paramètres des fonctions de type heure - minute - seconde ne sont
+                pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85).
 
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
@@ -26,11 +26,9 @@
 
 class Temps
 {
-    const static unsigned SECONDE_MAX_DANS_JOUR;
-
     friend std::ostream& operator<<(std::ostream& os, const Temps& temps);
 
-    // Operateur de comparaisons
+    // Opérateurs de comparaisons
     friend bool operator< (const Temps& temps1, const Temps& temps2);
     friend bool operator> (const Temps& temps1, const Temps& temps2);
     friend bool operator<=(const Temps& temps1, const Temps& temps2);
@@ -38,8 +36,10 @@ class Temps
     friend bool operator==(const Temps& temps1, const Temps& temps2);
     friend bool operator!=(const Temps& temps1, const Temps& temps2);
 
+    // Opérateurs binaires d'addition et soustraction
     friend Temps operator+(Temps temps1, const Temps& temps2);
     friend Temps operator-(Temps temps1, const Temps& temps2);
+
 public:
 
     Temps();
@@ -69,6 +69,8 @@ public:
     operator double() const; //Conversion tu temps courant en heures
 
     unsigned enSeconde() const;
+
+    const static unsigned SECONDE_MAX_DANS_JOUR;
 
 private:
     unsigned _heure  ;

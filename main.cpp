@@ -13,7 +13,7 @@
  -----------------------------------------------------------------------------------
  */
 
-#include <iostream>
+#include <iostream> //std::cout
 #include <cstdlib>  //EXIT_SUCCESS
 #include "Temps.h"
 
@@ -94,8 +94,6 @@ int main()
     std::cout << std::endl;
 
     //Incréments et décréments post-prefixés
-
-    //
     std::cout << "pre  ++ de " << t0 << " : ++t0 = " << ++t0 << std::endl;
     std::cout << "post ++ de " << t0 << " : t0++ = " << t0++ << std::endl
               << "valeur finale de t0 : " << t0 << std::endl;
@@ -107,7 +105,7 @@ int main()
 
     std::cout << std::endl;
 
-    //Addition et soustraction
+    //Additions et soustractions
     Temps t7 = Temps(23,30,30);
     Temps t8 = Temps(2 ,16,15);
     const Temps t9  = {23,30,30};
@@ -132,7 +130,7 @@ int main()
 
     std::cout << std::endl;
 
-    //Operateur de conversion
+    //Opérateur de conversion
     double heure = t12;
     std::cout << "Conversion de " << t12 << " en double = " << heure << std::endl;
 

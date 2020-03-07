@@ -5,11 +5,20 @@
  Auteur(s)   : Melvyn Herzig, Forestier Quentin, Logan Victoria
  Date        : 02.03.2020
 
+ But         : Mettre à dispotion une classe Temps caracterisées par
+                - des heures
+                - des minutes
+                - des secondes
+                Ainsi qu'un éventail de fonctions utiles à leur manipulation.
+
+ Remarque(s) : Les paramètres des fonctions de type heure - minute - seconde ne sont
+                pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85).
+
  Compilateur : MinGW-g++ 6.3.0
  -----------------------------------------------------------------------------------
  */
 
-#include <iomanip> //std::setx, std::setfill
+#include <iomanip> //std::setw, std::setfill
 #include "Temps.h"
 
 const unsigned Temps::SECONDE_MAX_DANS_JOUR = 86400;
