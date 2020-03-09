@@ -9,9 +9,9 @@
                 - des heures
                 - des minutes
                 - des secondes
-                Ainsi qu'un éventail de fonctions utiles à leur manipulation.
+                Ainsi qu'un éventail de fonctions utiles à sa manipulation.
 
- Remarque(s) : Les paramètres des fonctions de type heure - minute - seconde ne sont
+ Remarque(s) : Les paramètres de fonctions de type heure - minute - seconde ne sont
                 pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85).
 
  Compilateur : MinGW-g++ 6.3.0
@@ -44,7 +44,7 @@ bool operator<(const Temps &temps1, const Temps &temps2)
             && temps1._minute < temps2._minute)
         || (temps1._heure == temps2._heure
             && temps1._minute < temps2._minute
-            &&  temps1._seconde < temps2._seconde);
+            && temps1._seconde < temps2._seconde);
 }
 
 bool operator>(const Temps &temps1, const Temps &temps2)
@@ -76,14 +76,12 @@ bool operator!=(const Temps &temps1, const Temps &temps2)
 
 Temps operator+(Temps temps1, const Temps& temps2)
 {
-    temps1 += temps2;
-    return temps1;
+    return temps1 += temps2;
 }
 
 Temps operator-(Temps temps1, const Temps& temps2)
 {
-    temps1 -= temps2;
-    return temps1;
+    return temps1 -= temps2;
 }
 
 /* ------------------- CONSTRUCTEURS ---------------------*/
@@ -200,5 +198,5 @@ Temps::operator double() const
 
 unsigned Temps::enSeconde() const
 {
-    return _heure*3600 + _minute * 60 + _seconde;
+    return _heure * 3600 + _minute * 60 + _seconde;
 }

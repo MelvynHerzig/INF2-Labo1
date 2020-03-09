@@ -94,13 +94,17 @@ int main()
     std::cout << std::endl;
 
     //Incréments et décréments post-prefixés
-    std::cout << "pre  ++ de " << t0 << " : ++t0 = " << ++t0 << std::endl;
-    std::cout << "post ++ de " << t0 << " : t0++ = " << t0++ << std::endl
+    std::cout << "pre  ++ de " << t0;
+    std::cout << " = " << ++t0 << std::endl;
+    std::cout << "post ++ de " << t0;
+    std::cout << " = " << t0++ << std::endl
               << "valeur finale de t0 : " << t0 << std::endl;
     
 
-    std::cout << "pre  -- de " << t0 << " : --t0 = " << --t0 << std::endl;
-    std::cout << "post -- de " << t0 << " : t0-- = " << t0-- << std::endl
+    std::cout << "pre  -- de " << t0;
+    std::cout << " = " << --t0 << std::endl;
+    std::cout << "post -- de " << t0;
+    std::cout << " = " << t0-- << std::endl
               << "valeur finale de t0 : " << t0 << std::endl;
 
     std::cout << std::endl;
@@ -109,8 +113,8 @@ int main()
     Temps t7 = Temps(23,30,30);
     Temps t8 = Temps(2 ,16,15);
     const Temps t9  = {23,30,30};
-    const Temps t10 = {2,16,15};
-    const Temps t11 = {2,45,45};
+    const Temps t10 = {2 ,16,15};
+    const Temps t11 = {2 ,45,45};
 
     std::cout << t9  << " +  "  << t11 << " = " << t9  +   t11 << std::endl;
     std::cout << t7  << " += "  << t11 << " = ";

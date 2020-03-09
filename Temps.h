@@ -9,9 +9,9 @@
                 - des heures
                 - des minutes
                 - des secondes
-                Ainsi qu'un éventail de fonctions utiles à leur manipulation.
+                Ainsi qu'un éventail de fonctions utiles à sa manipulation.
 
- Remarque(s) : Les paramètres des fonctions de type heure - minute - seconde ne sont
+ Remarque(s) : Les paramètres de fonctions de type heure - minute - seconde ne sont
                 pas vérifiés. Il est donc tout à fait possible de faire setSeconde(85).
 
  Compilateur : MinGW-g++ 6.3.0
